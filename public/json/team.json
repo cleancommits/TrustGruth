@@ -1,0 +1,92 @@
+[
+    {
+        "id": "1",
+        "name": "Demarques Gamble",
+        "role": "CEO & Blockchain Master",
+        "image": "/src/teammember/venus.png"
+    },
+    {
+        "id": "3",
+        "name": "Mark Soosar",
+        "role": "Project Manager & Senior Blockchain Developer",
+        "image": "/src/teammember/Joshua Anderson.jpg"
+    },
+    
+    {
+        "id": "4",
+        "name": "Mark Soosar",
+        "role": "Project Manager & Senior Blockchain Developer",
+        "image": "/src/teammember/Joshua Anderson.jpg"
+    },
+    {
+        "id": "5",
+        "name": "Edwin Martinez",
+        "role": "Senior Blockchain Developer",
+        "image": "/src/teammember/Edwin Martinez.png"
+        
+    },
+    {
+        "id": "6",
+        "name": "Devonte Morris",
+        "role": "Senior Blockchain Developer",
+        "image": "/src/teammember/Devonte Morris.png"
+    },
+    {
+        "id": "7",
+        "name": "Kamil Nowak",
+        "role": "Senior FullStack Developer",
+        "image": "/src/teammember/atos.jpg"
+    },
+    {
+        "id": "8",
+        "name": "Edwin Martinez",
+        "role": "Senior Blockchain Developer",
+        "image": "/src/teammember/evil.png"
+    },
+    {
+        "id": "9",
+        "name": "Elisha Kenedy",
+        "role": "Senior Game Developer",
+        "image": "/src/teammember/achilles1.png"
+    },
+    {
+        "id": "10",
+        "name": "Mykola Kunichenko",
+        "role": "Senior Frontend Developer",
+        "image": "/src/teammember/123.jpg"
+    },
+    {
+        "id": "11",
+        "name": "Dmytro Bondar",
+        "role": "Senior Frontend Developer",
+        "image": "/src/teammember/1.png"
+    },
+    {
+        "id": "12",
+        "description": "Meet Our Team"
+    },
+    {
+        "id": "13",
+        "description": "Creative Minds"
+    },
+    {
+        "id": "14",
+        "description": "Who are we?"
+    },
+    {
+        "id": "15",
+        "description": "We thrive to help our clients have global impact"
+    },
+    {
+        "id": "16",
+        "description": "We are a group of passionate professionals with diverse skills, working together to deliver outstanding results for our clients. We are committed to excellence and building strong relationships to help our clients succeed."
+    },
+    {
+        "id": "17",
+        "description": "Our Visionary Leaders"
+    },
+    {
+        "id": "14",
+        "description": "Our Developers"
+    }
+]
