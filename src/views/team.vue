@@ -370,7 +370,7 @@
                 </div>
                 <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-2">
                     <div class="group cursor-pointer text-center">
-                        <div class="relative h-[400px] rounded-3xl transition-all duration-500 group-hover:shadow-[0_0_25px_#979797]">
+                        <div class="relative h-[500px] rounded-3xl transition-all duration-500 group-hover:shadow-[0_0_25px_#979797]">
                             <img :src=jsonData[0]?.image alt="leader-1" class="h-full w-full rounded-3xl object-cover object-top" />
                         </div>
                         <h4 class="pt-5 pb-2 text-xl font-extrabold text-black transition duration-500 group-hover:text-secondary dark:text-white">
@@ -380,7 +380,7 @@
                     </div>
                     
                     <div class="group cursor-pointer text-center">
-                        <div class="relative h-[400px] rounded-3xl transition-all duration-500 group-hover:shadow-[0_0_25px_#979797]">
+                        <div class="relative h-[500px] rounded-3xl transition-all duration-500 group-hover:shadow-[0_0_25px_#979797]">
                             <img :src=jsonData[2]?.image alt="leader-3" class="h-full w-full rounded-3xl object-cover object-top" />
                         </div>
                         <h4 class="pt-5 pb-2 text-xl font-extrabold text-black transition duration-500 group-hover:text-secondary dark:text-white">
@@ -416,7 +416,7 @@
                         </h4>
                         <h6 class="text-sm font-bold">{{jsonData[3]?.role}}</h6>
                     </div>
-                    <div class="group mt-4 cursor-pointer text-center">
+                    <!-- <div class="group mt-4 cursor-pointer text-center">
                         <div class="relative h-[280px] rounded-3xl transition-all duration-500 group-hover:shadow-[0_0_25px_#979797]">
                             <img :src=jsonData[4]?.image alt="path-leaders-3" class="h-full w-full rounded-3xl object-cover object-top" />
                         </div>
@@ -433,8 +433,8 @@
                             {{jsonData[5]?.name}}
                         </h4>
                         <h6 class="text-sm font-bold">{{jsonData[5]?.role}}</h6>
-                    </div>
-                    <div class="group mt-4 cursor-pointer text-center">
+                    </div> -->
+                    <!-- <div class="group mt-4 cursor-pointer text-center">
                         <div class="relative h-[280px] rounded-3xl transition-all duration-500 group-hover:shadow-[0_0_25px_#979797]">
                             <img :src=jsonData[6]?.image alt="path-leaders-5" class="h-full w-full rounded-3xl object-cover object-top" />
                         </div>
@@ -451,7 +451,7 @@
                             {{jsonData[7]?.name}}
                         </h4>
                         <h6 class="text-sm font-bold">{{jsonData[7]?.role}}</h6>
-                    </div>
+                    </div> -->
                     <div class="group mt-4 cursor-pointer text-center">
                         <div class="relative h-[280px] rounded-3xl transition-all duration-500 group-hover:shadow-[0_0_25px_#979797]">
                             <img :src=jsonData[8]?.image alt="path-leaders-7" class="h-full w-full rounded-3xl object-cover object-top" />

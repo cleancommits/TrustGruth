@@ -1,22 +1,22 @@
 [
     {
         "id": "1",
-        "name": "Demarques Gamble",
-        "role": "CEO & Blockchain Master",
-        "image": "/src/teammember/venus.png"
+        "name": "Soul Lee",
+        "role": "CEO",
+        "image": "/src/teammember/soul-lee.jpg"
     },
     {
         "id": "3",
-        "name": "Mark Soosar",
-        "role": "Project Manager & Senior Blockchain Developer",
-        "image": "/src/teammember/Joshua Anderson.jpg"
+        "name": "Andrew Kim",
+        "role": "Project Manager & Senior Software Engineer",
+        "image": "/src/teammember/andrewkim.jpg"
     },
     
     {
         "id": "4",
-        "name": "Mark Soosar",
-        "role": "Project Manager & Senior Blockchain Developer",
-        "image": "/src/teammember/Joshua Anderson.jpg"
+        "name": "Andrew Kim",
+        "role": "Project Manager & Senior Software Engineer",
+        "image": "/src/teammember/andrewkim.jpg"
     },
     {
         "id": "5",
