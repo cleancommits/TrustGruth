@@ -910,9 +910,7 @@
             !formData.value.city.trim() ||
             !formData.value.message.trim()
         ) {
-            toast.error('Please fill in all required fields.', {
-            theme: 'colored',
-            });
+            toast.error('Please fill in all required fields.', { autoClose: 5000 });
             return;
         }
 
@@ -934,8 +932,8 @@
         try {
             await emailjs.send(serviceId, templateId, templateParams, userId);
 
-            toast.success('Message sent successfully! We will get back to you soon.', {
-            theme: 'colored',
+            toast.success('Message sent successfully! We\'ll get back to you soon.', {
+            autoClose: 5000,
             });
 
             // Reset form
@@ -949,7 +947,7 @@
         } catch (error) {
             console.error('Error sending email:', error);
             toast.error('Failed to send message. Please try again later.', {
-            theme: 'colored',
+            autoClose: 6000,
             });
         } finally {
             isSubmitting.value = false;

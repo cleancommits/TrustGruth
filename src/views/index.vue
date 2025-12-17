@@ -309,7 +309,8 @@
                             data-aos-duration="1000"
                         />
                     </div>
-                    <form @submit="sendEmail" class="rounded-3xl bg-white px-4 py-12 dark:bg-[#101626] lg:w-2/3 lg:px-8">
+                    <contact-us />
+                    <form @submit="sendEmail" class="rounded-3xl bg-white px-4 py-12 dark:bg-gray-dark lg:w-2/3 lg:px-8">
                         <div class="grid gap-10 sm:grid-cols-2">
                             <div class="relative">
                                 <input
@@ -318,7 +319,7 @@
                                     v-model="formData.name" 
                                     class="w-full rounded-2xl border-2 border-gray/20 bg-transparent p-4 font-bold outline-none transition focus:border-secondary ltr:pr-12 rtl:pl-12"
                                 />
-                                <label id="full_name" for="" class="absolute -top-3 bg-white px-2 font-bold ltr:left-6 rtl:right-6 dark:bg-[#101626] dark:text-white"
+                                <label for="" class="absolute -top-3 bg-white px-2 font-bold ltr:left-6 rtl:right-6 dark:bg-gray-dark dark:text-white"
                                     >Full Name</label
                                 >
                                 <svg
@@ -349,7 +350,7 @@
                                     v-model="formData.email" 
                                     class="w-full rounded-2xl border-2 border-gray/20 bg-transparent p-4 font-bold outline-none transition focus:border-secondary ltr:pr-12 rtl:pl-12"
                                 />
-                                <label for="" class="absolute -top-3 bg-white px-2 font-bold ltr:left-6 rtl:right-6 dark:bg-[#101626] dark:text-white"
+                                <label for="" class="absolute -top-3 bg-white px-2 font-bold ltr:left-6 rtl:right-6 dark:bg-gray-dark dark:text-white"
                                     >Email Address</label
                                 >
                                 <svg
@@ -382,7 +383,7 @@
                                     v-model="formData.phonenumber" 
                                     class="w-full rounded-2xl border-2 border-gray/20 bg-transparent p-4 font-bold outline-none transition focus:border-secondary ltr:pr-12 rtl:pl-12"
                                 />
-                                <label for="" class="absolute -top-3 bg-white px-2 font-bold ltr:left-6 rtl:right-6 dark:bg-[#101626] dark:text-white"
+                                <label for="" class="absolute -top-3 bg-white px-2 font-bold ltr:left-6 rtl:right-6 dark:bg-gray-dark dark:text-white"
                                     >Mobile Number</label
                                 >
                                 <svg
@@ -408,7 +409,7 @@
                                     v-model="formData.city" 
                                     class="w-full rounded-2xl border-2 border-gray/20 bg-transparent p-4 font-bold outline-none transition focus:border-secondary ltr:pr-12 rtl:pl-12"
                                 />
-                                <label for="" class="absolute -top-3 bg-white px-2 font-bold ltr:left-6 rtl:right-6 dark:bg-[#101626] dark:text-white"
+                                <label for="" class="absolute -top-3 bg-white px-2 font-bold ltr:left-6 rtl:right-6 dark:bg-gray-dark dark:text-white"
                                     >City</label
                                 >
                                 <svg
@@ -435,37 +436,23 @@
                             </div>
                         </div>
                         <div class="relative mt-10">
-                            <input
+                            <textarea
                                 type="text"
                                 name="message"
-                                v-model="formData.message"
+                                rows="5"
+                                v-model="formData.message" 
                                 class="w-full rounded-2xl border-2 border-gray/20 bg-transparent p-4 font-bold outline-none transition focus:border-secondary ltr:pr-12 rtl:pl-12"
                             />
-                            <label for="" class="absolute -top-3 bg-white px-2 font-bold ltr:left-6 rtl:right-6 dark:bg-[#101626] dark:text-white"
-                                >Message</label
-                            >
-                            <svg
-                                width="22"
-                                height="22"
-                                viewBox="0 0 22 22"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                                class="absolute top-1/2 -translate-y-1/2 ltr:right-4 rtl:left-4 dark:text-white"
-                            >
-                                <path
-                                    d="M1 11.467V18.9267C1 19.7652 1.96993 20.2314 2.6247 19.7076L5.45217 17.4456C5.8068 17.1619 6.24742 17.0073 6.70156 17.0073H16C18.7614 17.0073 21 14.7687 21 12.0073V6.00732C21 3.2459 18.7614 1.00732 16 1.00732H6C3.23858 1.00732 1 3.2459 1 6.00732V7.62225"
-                                    stroke="currentColor"
-                                    stroke-width="1.8"
-                                    stroke-linecap="round"
-                                />
-                                <circle cx="6.05005" cy="9.05713" r="1.25" fill="currentColor" />
-                                <circle cx="11.05" cy="9.05713" r="1.25" fill="currentColor" />
-                                <circle cx="16.05" cy="9.05713" r="1.25" fill="currentColor" />
-                            </svg>
+                            <label for="" class="absolute -top-3 bg-white px-2 font-bold ltr:left-6 rtl:right-6 dark:bg-gray-dark dark:text-white"
+                                >Message</label>
                         </div>
                         <div class="mt-10 text-center ltr:lg:text-right rtl:lg:text-left">
-                            <button type="submit" class="btn bg-gray px-12 capitalize text-white dark:bg-white dark:text-black dark:hover:bg-secondary">
-                                Send Message
+                            <button
+                                type="submit"
+                                :disabled="isSubmitting"
+                                class="btn bg-gray px-12 capitalize text-white dark:bg-white dark:text-black dark:hover:bg-secondary disabled:opacity-60"
+                            >
+                                {{ isSubmitting ? 'Sending...' : 'Submit' }}
                             </button>
                         </div>
                     </form>
@@ -477,57 +464,83 @@
 <script setup lang="ts">
     import { ref, onMounted} from 'vue';
     import emailjs from 'emailjs-com';
+    import { toast } from 'vue3-toastify';
     import Testimonial from '@/components/Testimonial.vue';
     import Counter from '@/components/Counter.vue';
     import Category from '@/components/Category.vue';
     import Portfolio from '@/components/Portfolio.vue';
     import { useAppStore } from '@/stores/index';
-    const store = useAppStore();
     
+
+    const store = useAppStore();
+    const isSubmitting = ref(false);
+
     const leaders = ref([]);
     const portfolioTypes = ref([]);
     const portfolioes = ref([]);
-    let formData = {
+
+    const formData = ref({
         name: '',
         email: '',
         phonenumber: '',
         city: '',
-        message: ''
-    };
+        message: '',
+    });
 
-    const sendEmail = (event) => {
+    const sendEmail = async (event: Event) => {
         event.preventDefault();
-        const serviceId = 'service_9gsdzyo';
-        const templateId = 'template_2pojkut';
-        const userId = 'tDTNWuzpdfbO4j6E5';
+        // Validation: Check if all required fields are filled
+        if (
+            !formData.value.name.trim() ||
+            !formData.value.email.trim() ||
+            !formData.value.phonenumber.trim() ||
+            !formData.value.city.trim() ||
+            !formData.value.message.trim()
+        ) {
+            toast.error('Please fill in all required fields.', { autoClose: 5000 });
+            return;
+        }
 
-    
+        isSubmitting.value = true;
 
-    // Replace the placeholders with your actual values
+        const serviceId = 'service_0yrunqe';
+        const templateId = 'template_1pjbuij';
+        const userId = '4LhHEy5FXbxHeJKdO';
+
         const templateParams = {
             to_name: 'Achilles',
-            from_name: formData.name,
-            email: formData.email,
-            phonenumber: formData.phonenumber,
-            city: formData.city,
-            message: formData.message,
+            from_name: formData.value.name,
+            email: formData.value.email,
+            phonenumber: formData.value.phonenumber,
+            city: formData.value.city,
+            message: formData.value.message,
         };
 
-        emailjs.send(serviceId, templateId, templateParams, userId)
-        .then((response) => {
-            // Reset the form after successful submission
-            formData = {
-                name: '',
-                email: '',
-                phonenumber: '',
-                city: '',
-                message: ''
+        try {
+            await emailjs.send(serviceId, templateId, templateParams, userId);
+
+            toast.success('Message sent successfully! We\'ll get back to you soon.', {
+            autoClose: 5000,
+            });
+
+            // Reset form
+            formData.value = {
+            name: '',
+            email: '',
+            phonenumber: '',
+            city: '',
+            message: '',
             };
-        })
-        .catch((error) => {
+        } catch (error) {
             console.error('Error sending email:', error);
-        });
+            toast.error('Failed to send message. Please try again later.', {
+            autoClose: 6000,
+            });
+        } finally {
+            isSubmitting.value = false;
+        }
     };
+
     onMounted(async () => {
     try {
         const leadersResponse = await fetch('/json/team.json');
