@@ -844,12 +844,15 @@
                                 class="w-full rounded-2xl border-2 border-gray/20 bg-transparent p-4 font-bold outline-none transition focus:border-secondary ltr:pr-12 rtl:pl-12"
                             />
                             <label for="" class="absolute -top-3 bg-white px-2 font-bold ltr:left-6 rtl:right-6 dark:bg-gray-dark dark:text-white"
-                                >Message</label
-                            >
+                                >Message</label>
                         </div>
                         <div class="mt-10 text-center ltr:lg:text-right rtl:lg:text-left">
-                            <button type="submit" class="btn bg-gray px-12 capitalize text-white dark:bg-white dark:text-black dark:hover:bg-secondary">
-                                Submit
+                            <button
+                                type="submit"
+                                :disabled="isSubmitting"
+                                class="btn bg-gray px-12 capitalize text-white dark:bg-white dark:text-black dark:hover:bg-secondary disabled:opacity-60"
+                            >
+                                {{ isSubmitting ? 'Sending...' : 'Submit' }}
                             </button>
                         </div>
                     </form>
@@ -881,56 +884,84 @@
 <script setup lang="ts">
     import { ref, onMounted} from 'vue';
     import emailjs from 'emailjs-com';
+    import { toast } from 'vue3-toastify';
     import OfficeSwiper from '@/components/OfficeSwiper.vue';
     import { useAppStore } from '@/stores/index';
+
     const store = useAppStore();
     const teaminfor = ref([]);
-    let formData = {
+    const isSubmitting = ref(false);
+
+    const formData = ref({
         name: '',
         email: '',
         phonenumber: '',
         city: '',
-        message: ''
-    };
-    const sendEmail = (event) => {
+        message: '',
+    });
+    const sendEmail = async (event: Event) => {
         event.preventDefault();
+
+        // Validation: Check if all required fields are filled
+        if (
+            !formData.value.name.trim() ||
+            !formData.value.email.trim() ||
+            !formData.value.phonenumber.trim() ||
+            !formData.value.city.trim() ||
+            !formData.value.message.trim()
+        ) {
+            toast.error('Please fill in all required fields.', {
+            theme: 'colored',
+            });
+            return;
+        }
+
+        isSubmitting.value = true;
+
         const serviceId = 'service_0yrunqe';
         const templateId = 'template_1pjbuij';
         const userId = '4LhHEy5FXbxHeJKdO';
 
-    
-
-    // Replace the placeholders with your actual values
         const templateParams = {
             to_name: 'Song Peter',
-            from_name: formData.name,
-            email: formData.email,
-            phonenumber: formData.phonenumber,
-            city: formData.city,
-            message: formData.message,
+            from_name: formData.value.name,
+            email: formData.value.email,
+            phonenumber: formData.value.phonenumber,
+            city: formData.value.city,
+            message: formData.value.message,
         };
 
-        emailjs.send(serviceId, templateId, templateParams, userId)
-        .then((response) => {
-            // Reset the form after successful submission
-            formData = {
+        try {
+            await emailjs.send(serviceId, templateId, templateParams, userId);
+
+            toast.success('Message sent successfully! We will get back to you soon.', {
+            theme: 'colored',
+            });
+
+            // Reset form
+            formData.value = {
                 name: '',
                 email: '',
                 phonenumber: '',
                 city: '',
-                message: ''
+                message: '',
             };
-        })
-        .catch((error) => {
+        } catch (error) {
             console.error('Error sending email:', error);
-        });
+            toast.error('Failed to send message. Please try again later.', {
+            theme: 'colored',
+            });
+        } finally {
+            isSubmitting.value = false;
+        }
     };
+
     onMounted(async () => {
-    try {
-        const teaminforResponse = await fetch('/json/team_infor.json');
-        teaminfor.value = await teaminforResponse.json();
-    } catch (error) {
-        console.error('Error fetching JSON data: ', error);
-    }
+        try {
+            const teaminforResponse = await fetch('/json/team_infor.json');
+            teaminfor.value = await teaminforResponse.json();
+        } catch (error) {
+            console.error('Error fetching JSON data: ', error);
+        }
     });
 </script>
